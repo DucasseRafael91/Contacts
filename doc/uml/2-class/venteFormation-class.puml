@@ -1,0 +1,48 @@
+@startuml VenteFormation
+
+class Formation {
+    -int id
+    -string nom
+    -text description
+    -int duree_jours
+    -double prix
+}
+
+class TypeFormation {
+    -int id
+    -string nom
+}
+
+class Categorie {
+    -int id
+    -string nom
+}
+
+class Utilisateur {
+    -int id
+    -string identifiant
+    -string mot_de_passe
+    -boolean estAdmin
+}
+
+class Client {
+    -int id
+    -string nom
+    -string prenom
+    -string email
+    -string adresse
+    -string telephone
+}
+
+class Commande {
+    -int id
+    -date date_commande
+}
+
+Categorie "1" --> "0..n" Formation : catégorise
+TypeFormation "0..n" -- "0..n" Formation : est de type
+Utilisateur "1" -- "0..n" Client : effectue
+Commande "1" -- "0..n" Formation : contient
+Commande "0..n" -- "1" Client : compose
+
+@enduml
