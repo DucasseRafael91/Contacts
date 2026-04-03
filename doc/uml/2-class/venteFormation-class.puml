@@ -1,48 +1,35 @@
 @startuml VenteFormation
 
-class Formation {
-    -int id
-    -string nom
-    -text description
-    -int duree_jours
-    -double prix
-}
-
-class TypeFormation {
-    -int id
-    -string nom
+class Contact {
+    -Integer id
+    -String nom
+    -String prenom
+    -String email
+    -String telephone
+    -String adresse
 }
 
 class Categorie {
-    -int id
-    -string nom
+    -Integer id
+    -String nom
 }
 
 class Utilisateur {
-    -int id
-    -string identifiant
-    -string mot_de_passe
-    -boolean estAdmin
+    -Integer id
+    -String identifiant
+    -String motDePasse
 }
 
-class Client {
-    -int id
-    -string nom
-    -string prenom
-    -string email
-    -string adresse
-    -string telephone
+class Message {
+    -Integer id
+    -String contenu
+    -Date dateEnvoi
 }
 
-class Commande {
-    -int id
-    -date date_commande
-}
+Utilisateur "1" --> "0..n" Contact : possède
+Categorie "0..1" <-- "0..n" Contact : appartient à
 
-Categorie "1" --> "0..n" Formation : catégorise
-TypeFormation "0..n" -- "0..n" Formation : est de type
-Utilisateur "1" -- "0..n" Client : effectue
-Commande "1" -- "0..n" Formation : contient
-Commande "0..n" -- "1" Client : compose
+Utilisateur "1" --> "0..n" Message : envoie
+Contact "1" <-- "0..n" Message : destinataire
 
 @enduml
