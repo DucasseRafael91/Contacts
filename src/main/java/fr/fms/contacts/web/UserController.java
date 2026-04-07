@@ -23,10 +23,4 @@ public class UserController {
   @Autowired
   ContactRepository categoryRepository;
 
-  @GetMapping("/index")
-  public String index(Model model) {
-
-    model.addAttribute("listContact", contactRepository.findAll());
-    return "contacts";
-  }
 }
