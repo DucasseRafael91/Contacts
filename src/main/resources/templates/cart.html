@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="layout.html">
+<head>
+  <meta charset="UTF-8">
+  <title>Panier</title>
+  <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+</head>
+<body>
+
+<section layout:fragment="content">
+  <!-- Tableau des articles -->
+  <table class="table table-striped mt-3">
+    <thead>
+    <tr>
+      <th>Id</th>
+      <th>Description</th>
+      <th>Prix</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="a : ${listArticle}">
+      <td th:text="${a.id}"></td>
+      <td th:text="${a.description}"></td>
+      <td th:text="${a.price}"></td>
+    </tr>
+    </tbody>
+  </table>
+</section>
+
+</body>
+</html>

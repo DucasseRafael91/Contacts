@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="layout.html">
+<head>
+  <meta charset="UTF-8">
+  <title>Mes Articles</title>
+  <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+</head>
+<body>
+
+<div layout:fragment="content">
+  <div class="container mt-4">
+    <div class="card">
+      <div class="card-header bg-primary text-white">Liste des articles</div>
+      <div class="card-body">
+
+        <a class="btn btn-sm btn-outline-primary mb-1"
+           th:each="c : ${categories}"
+           th:href="@{/index(keyword=${keyword}, categoryId=${c.id})}"
+           th:text="${c.name}">
+        </a>
+          <a class="btn btn-sm btn-outline-secondary mb-1"
+             th:href="@{/index(keyword=${keyword})}">Tous</a>
+        </div>
+
+        <form th:action="@{/index}" method="get" class="mb-3">
+          <label for="keyword">Keyword</label>
+          <input type="text" id="keyword" name="keyword" th:value="${keyword}">
+          <button type="submit" class="btn btn-primary">Search</button>
+        </form>
+
+        <table class="table table-striped mt-3">
+          <thead>
+          <tr>
+            <th>Id</th>
+            <th>Description</th>
+            <th>Prix</th>
+            <th>Actions</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr th:each="a : ${listArticle}">
+            <td th:text="${a.id}"></td>
+            <td th:text="${a.description}"></td>
+            <td th:text="${a.price}"></td>
+            <td>
+              <a th:href="@{/addToCart(id=${a.id}, page=${currentPage}, keyword=${keyword})}">Ajouter au Panier</a>
+            </td>
+            <td>
+              <a th:href="@{/delete(id=${a.id}, page=${currentPage}, keyword=${keyword})}">Supprimer</a>
+            </td>
+            <td>
+              <a th:href="@{/edit(id=${a.id})}">Modifier</a>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+        <ul class="nav nav-pills mt-3">
+          <li class="nav-item" th:each="p, stat : ${pages}">
+            <a class="nav-link"
+               th:classappend="${stat.index == currentPage} ? 'active'"
+               th:href="@{/index(page=${stat.index}, keyword=${keyword}, categoryId=${categoryId})}"
+               th:text="${stat.index + 1}">
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

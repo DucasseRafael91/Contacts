@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="layout.html">
+<head>
+  <meta charset="UTF-8">
+  <title>Modifier un article</title>
+</head>
+
+<body>
+<div layout:fragment="content">
+  <div class="col-md-4 col-xs-8">
+    <div class="card card-primary">
+      <div class="card-header">Modifier un article</div>
+      <div class="card-body">
+        <form th:action="@{/update}" th:object="${article}" method="post">
+
+          <input type="hidden" th:field="*{id}">
+
+          <div class="form-group">
+            <label>Description :</label>
+            <input class="form-control" type="text" th:field="*{description}">
+            <span th:errors="*{description}" class="text-danger"></span>
+          </div>
+
+          <div class="form-group">
+            <label>Prix :</label>
+            <input class="form-control" type="text" th:field="*{price}">
+            <span th:errors="*{price}" class="text-danger"></span>
+          </div>
+
+          <div class="form-group">
+            <label>Catégorie :</label>
+            <select class="form-control" th:field="*{category}">
+              <option value="">-- Choisir --</option>
+              <option th:each="c : ${categories}"
+                      th:value="${c.id}"
+                      th:text="${c.name}">
+              </option>
+            </select>
+          </div>
+
+          <button type="submit" class="btn btn-primary">Enregistrer</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

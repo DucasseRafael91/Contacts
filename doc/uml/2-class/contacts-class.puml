@@ -16,8 +16,9 @@ class Categorie {
 
 class Utilisateur {
     -Integer id
-    -String identifiant
+    -String email
     -String motDePasse
+
 }
 
 class Message {
