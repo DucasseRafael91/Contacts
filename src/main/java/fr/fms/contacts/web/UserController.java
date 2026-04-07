@@ -1,26 +1,14 @@
 package fr.fms.contacts.web;
 
-import fr.fms.contacts.dao.ContactRepository;
-import fr.fms.contacts.dao.MessageRepository;
-import fr.fms.contacts.dao.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class UserController {
 
-  @Autowired
-  UserRepository userRepository;
-
-  @Autowired
-  ContactRepository contactRepository;
-
-  @Autowired
-  MessageRepository articleRepository;
-
-  @Autowired
-  ContactRepository categoryRepository;
+  @GetMapping("/login")
+  public String login() {
+    return "login"; // renvoie login.html
+  }
 
 }
