@@ -38,4 +38,12 @@ public class ContactController {
     model.addAttribute("listContact", contactRepository.findContactsByUser(user));
     return "contacts";
   }
+
+  @GetMapping("/delete")
+  public String delete(Long id){
+
+    contactRepository.deleteById(id);
+
+    return "redirect:/index";
+  }
 }
