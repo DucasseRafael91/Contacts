@@ -29,4 +29,10 @@ public class User implements Serializable {
 
   @OneToMany(mappedBy = "user")
   private Collection<Contact> contacts;
+
+
+  public User(String mail, String password) {
+    this.mail = mail;
+    this.password = password;
+  }
 }
