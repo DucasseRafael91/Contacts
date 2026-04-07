@@ -5,6 +5,7 @@ import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import java.io.Serializable;
+import java.util.Collection;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -18,12 +19,11 @@ public class User implements Serializable {
   private Long id;
 
   @NotNull
-  @Size(min = 10, max = 50)
-  private String description;
+  private String mail;
 
-  @DecimalMin("50")
-  private double price;
+  @NotNull
+  private double password;
 
-  @ManyToOne
-  private Category category;
+  @OneToMany(mappedBy = "user")
+  private Collection<Contact> contacts;
 }
