@@ -3,6 +3,9 @@ package fr.fms.contacts.web;
 import fr.fms.contacts.dao.ContactRepository;
 import fr.fms.contacts.dao.UserRepository;
 import fr.fms.contacts.dao.MessageRepository;
+import jakarta.servlet.http.HttpSession;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
@@ -24,8 +27,11 @@ public class ContactController {
   ContactRepository categoryRepository;
 
   @GetMapping("/index")
-  public String index(Model model) {
+  public String index(Model model, HttpSession session) {
 
+    Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+    String username = auth.getName();
+    session.setAttribute("loggedUser", username);
     model.addAttribute("listContact", contactRepository.findAll());
     return "contacts";
   }

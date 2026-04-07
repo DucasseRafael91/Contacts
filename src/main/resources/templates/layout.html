@@ -17,8 +17,15 @@
       <li class="nav-item me-3">
         <a class="nav-link" th:href="@{/article}">Article</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" th:href="@{/connexion}">Se connecter</a>
+      <!-- Afficher le bouton seulement si l'utilisateur n'est pas authentifié -->
+      <li class="nav-item" th:if="${session.loggedUser == null}">
+        <a class="nav-link" th:href="@{/login}">Se connecter</a>
+      </li>
+      <li class="nav-item" th:if="${session.loggedUser != null}">
+        <span class="navbar-text me-2">Bonjour, <span th:text="${session.loggedUser}">Utilisateur</span></span>
+        <form th:action="@{/logout}" method="post" style="display:inline;">
+          <button type="submit" class="btn btn-link nav-link" style="display:inline; padding:0; border:none;">Se déconnecter</button>
+        </form>
       </li>
     </ul>
   </div>
