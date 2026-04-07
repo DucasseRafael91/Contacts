@@ -2,6 +2,7 @@ package fr.fms.contacts.entities;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.DecimalMin;
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import java.io.Serializable;
@@ -19,10 +20,12 @@ public class User implements Serializable {
   private Long id;
 
   @NotNull
+  @Email(message = "Email invalide")
   private String mail;
 
   @NotNull
-  private double password;
+  @Size(min = 6, message = "Le mot de passe doit avoir au moins 6 caractères")
+  private String password;
 
   @OneToMany(mappedBy = "user")
   private Collection<Contact> contacts;
