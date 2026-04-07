@@ -3,7 +3,9 @@ package fr.fms.contacts.web;
 import fr.fms.contacts.dao.ContactRepository;
 import fr.fms.contacts.dao.UserRepository;
 import fr.fms.contacts.dao.MessageRepository;
+import fr.fms.contacts.entities.User;
 import jakarta.servlet.http.HttpSession;
+import java.util.Optional;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -31,8 +33,9 @@ public class ContactController {
 
     Authentication auth = SecurityContextHolder.getContext().getAuthentication();
     String username = auth.getName();
+    User user = userRepository.findUserByMail(username).orElseThrow(() -> new RuntimeException("Utilisateur non trouvé"));
     session.setAttribute("loggedUser", username);
-    model.addAttribute("listContact", contactRepository.findAll());
+    model.addAttribute("listContact", contactRepository.findContactsByUser(user));
     return "contacts";
   }
 }
