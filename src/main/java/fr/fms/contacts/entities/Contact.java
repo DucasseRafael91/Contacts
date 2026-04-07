@@ -12,7 +12,6 @@ import java.util.Collection;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
 
 @Data
 @NoArgsConstructor
@@ -30,7 +29,4 @@ public class Contact implements Serializable {
   @ManyToOne
   private User user;
 
-
-  @OneToMany(mappedBy = "category")
-  private Collection<Article> articles;
 }
