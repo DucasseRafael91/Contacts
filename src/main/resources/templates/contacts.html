@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="layout.html">
+<head>
+  <meta charset="UTF-8">
+  <title>Mes Contacts</title>
+  <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+</head>
+<body>
+
+<div layout:fragment="content">
+  <div class="container mt-4">
+    <div class="card">
+      <div class="card-header bg-primary text-white">
+        Liste des contacts
+      </div>
+
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-4 mb-3" th:each="c : ${listContact}">
+            <div class="card h-100 shadow-sm">
+
+              <div class="card-body">
+                <h5 class="card-title"
+                    th:text="${c.firstName + ' ' + c.lastName}"></h5>
+
+                <p class="card-text">
+                  <strong>Email :</strong>
+                  <span th:text="${c.mail}"></span><br>
+
+                  <strong>Tél :</strong>
+                  <span th:text="${c.phone}"></span><br>
+
+                  <strong>Adresse :</strong>
+                  <span th:text="${c.address}"></span>
+                </p>
+              </div>
+
+              <div class="card-footer text-end">
+                <a class="btn btn-sm btn-outline-danger"
+                   th:href="@{/delete(id=${c.id})}">
+                  Supprimer
+                </a>
+
+                <a class="btn btn-sm btn-outline-primary"
+                   th:href="@{/edit(id=${c.id})}">
+                  Modifier
+                </a>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
