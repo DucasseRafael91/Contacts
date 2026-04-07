@@ -1,4 +1,4 @@
-package fr.lndr.SpringStockMvcSec.web;
+package fr.fms.contacts.web;
 
 import fr.lndr.SpringStockMvcSec.dao.ArticleRepository;
 import fr.lndr.SpringStockMvcSec.dao.CategoryRepository;
