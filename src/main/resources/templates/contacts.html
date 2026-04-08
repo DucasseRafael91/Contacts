@@ -38,6 +38,13 @@
               </div>
 
               <div class="card-footer text-end">
+                <a class="btn btn-sm btn-outline-info"
+                   th:href="@{/edit(id=${c.id})}">
+                  Modifier
+                </a>
+              </div>
+
+              <div class="card-footer text-end">
                 <a class="btn btn-sm btn-outline-danger"
                    th:href="@{/delete(id=${c.id})}">
                   Supprimer
