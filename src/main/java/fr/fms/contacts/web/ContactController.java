@@ -77,4 +77,33 @@ public class ContactController {
 
     return "redirect:/index";
   }
+
+  @GetMapping("/edit")
+  public String edit(Long id, Model model){
+    Contact contact = contactRepository.findContactById(id);
+    model.addAttribute("contact", contact);
+    return "edit";
+  }
+
+  @PostMapping("/update")
+  public String update(Model model,
+      @Valid Contact contact,
+      BindingResult bindingResult,
+      @AuthenticationPrincipal UserDetails userDetails) {
+
+    if (bindingResult.hasErrors()) {
+      return "edit";
+    }
+
+    String mail = userDetails.getUsername();
+
+    User user = userRepository.findUserByMail(mail)
+        .orElseThrow();
+
+    contact.setUser(user);
+
+    contactRepository.save(contact);
+
+    return "redirect:/index";
+  }
 }
