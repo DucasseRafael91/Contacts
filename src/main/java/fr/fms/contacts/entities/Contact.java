@@ -29,4 +29,7 @@ public class Contact implements Serializable {
   @ManyToOne
   private User user;
 
+  @ManyToOne
+  private Categorie categorie;
+
 }
