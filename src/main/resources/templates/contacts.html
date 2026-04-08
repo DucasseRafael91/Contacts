@@ -18,44 +18,113 @@
 
       <div class="card-body">
         <div class="row">
-          <div class="col-md-4 mb-3" th:each="c : ${listContact}">
+
+          <!-- Vrais contacts -->
+          <div class="col-md-4 mb-3" th:each="c : ${listContact}" th:if="${listContact != null and !#lists.isEmpty(listContact)}">
             <div class="card h-100 shadow-sm">
-
               <div class="card-body">
-                <h5 class="card-title"
-                    th:text="${c.firstName + ' ' + c.lastName}"></h5>
-
+                <h5 class="card-title" th:text="${c.firstName + ' ' + c.lastName}"></h5>
                 <p class="card-text">
-                  <strong>Email :</strong>
-                  <span th:text="${c.mail}"></span><br>
-
-                  <strong>Tél :</strong>
-                  <span th:text="${c.phone}"></span><br>
-
-                  <strong>Adresse :</strong>
-                  <span th:text="${c.address}"></span><br>
-
-                  <strong>Catégorie :</strong>
-                  <span th:text="${c.categorie.getName()}"></span>
-
+                  <strong>Email :</strong> <span th:text="${c.mail}"></span><br>
+                  <strong>Tél :</strong> <span th:text="${c.phone}"></span><br>
+                  <strong>Adresse :</strong> <span th:text="${c.address}"></span><br>
+                  <strong>Catégorie :</strong> <span th:text="${c.categorie.getName()}"></span>
                 </p>
               </div>
-
               <div class="card-footer text-end">
-                <a class="btn btn-sm btn-outline-info"
-                   th:href="@{/edit(id=${c.id})}">
-                  Modifier
-                </a>
-              </div>
-
-              <div class="card-footer text-end">
-                <a class="btn btn-sm btn-outline-danger"
-                   th:href="@{/delete(id=${c.id})}">
-                  Supprimer
-                </a>
+                <a class="btn btn-sm btn-outline-info" th:href="@{/edit(id=${c.id})}">Modifier</a>
+                <a class="btn btn-sm btn-outline-danger" th:href="@{/delete(id=${c.id})}">Supprimer</a>
               </div>
             </div>
           </div>
+
+          <!-- Contacts fictifs -->
+          <div class="col-md-4 mb-3" th:if="${listContact == null or #lists.isEmpty(listContact)}">
+            <div class="card h-100 shadow-sm">
+              <div class="card-body">
+                <h5 class="card-title">Jean Dupont</h5>
+                <p class="card-text">
+                  <strong>Email :</strong> jean.dupont@mail.com<br>
+                  <strong>Tél :</strong> 0601020304<br>
+                  <strong>Adresse :</strong> 10 rue Exemple, Paris<br>
+                  <strong>Catégorie :</strong> Amis
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4 mb-3" th:if="${listContact == null or #lists.isEmpty(listContact)}">
+            <div class="card h-100 shadow-sm">
+              <div class="card-body">
+                <h5 class="card-title">Claire Martin</h5>
+                <p class="card-text">
+                  <strong>Email :</strong> claire.martin@mail.com<br>
+                  <strong>Tél :</strong> 0605060708<br>
+                  <strong>Adresse :</strong> 25 avenue Exemple, Lyon<br>
+                  <strong>Catégorie :</strong> Travail
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4 mb-3" th:if="${listContact == null or #lists.isEmpty(listContact)}">
+            <div class="card h-100 shadow-sm">
+              <div class="card-body">
+                <h5 class="card-title">Claire Martin</h5>
+                <p class="card-text">
+                  <strong>Email :</strong> claire.martin@mail.com<br>
+                  <strong>Tél :</strong> 0605060708<br>
+                  <strong>Adresse :</strong> 25 avenue Exemple, Lyon<br>
+                  <strong>Catégorie :</strong> Travail
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4 mb-3" th:if="${listContact == null or #lists.isEmpty(listContact)}">
+            <div class="card h-100 shadow-sm">
+              <div class="card-body">
+                <h5 class="card-title">Claire Martin</h5>
+                <p class="card-text">
+                  <strong>Email :</strong> claire.martin@mail.com<br>
+                  <strong>Tél :</strong> 0605060708<br>
+                  <strong>Adresse :</strong> 25 avenue Exemple, Lyon<br>
+                  <strong>Catégorie :</strong> Travail
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4 mb-3" th:if="${listContact == null or #lists.isEmpty(listContact)}">
+            <div class="card h-100 shadow-sm">
+              <div class="card-body">
+                <h5 class="card-title">Claire Martin</h5>
+                <p class="card-text">
+                  <strong>Email :</strong> claire.martin@mail.com<br>
+                  <strong>Tél :</strong> 0605060708<br>
+                  <strong>Adresse :</strong> 25 avenue Exemple, Lyon<br>
+                  <strong>Catégorie :</strong> Travail
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4 mb-3" th:if="${listContact == null or #lists.isEmpty(listContact)}">
+            <div class="card h-100 shadow-sm">
+              <div class="card-body">
+                <h5 class="card-title">Claire Martin</h5>
+                <p class="card-text">
+                  <strong>Email :</strong> claire.martin@mail.com<br>
+                  <strong>Tél :</strong> 0605060708<br>
+                  <strong>Adresse :</strong> 25 avenue Exemple, Lyon<br>
+                  <strong>Catégorie :</strong> Travail
+                </p>
+              </div>
+            </div>
+          </div>
+
+
+
         </div>
       </div>
 
