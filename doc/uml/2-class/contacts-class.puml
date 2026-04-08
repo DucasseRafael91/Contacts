@@ -27,10 +27,10 @@ class Message {
     -Date dateEnvoi
 }
 
-Utilisateur "1" --> "0..n" Contact : possède
-Categorie "0..1" <-- "0..n" Contact : appartient à
+Utilisateur "1" -- "0..n" Contact : possède
+Categorie "0..1" -- "0..n" Contact : appartient à
 
-Utilisateur "1" --> "0..n" Message : envoie
-Contact "1" <-- "0..n" Message : destinataire
+Utilisateur "1" -- "0..n" Message : envoie
+Contact "1" -- "0..n" Message : destinataire
 
 @enduml
