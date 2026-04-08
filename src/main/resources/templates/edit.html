@@ -4,40 +4,47 @@
       layout:decorate="layout.html">
 <head>
   <meta charset="UTF-8">
-  <title>Modifier un article</title>
+  <title>Modifier un contact</title>
 </head>
 
 <body>
 <div layout:fragment="content">
   <div class="col-md-4 col-xs-8">
     <div class="card card-primary">
-      <div class="card-header">Modifier un article</div>
+      <div class="card-header">Modifier un contact</div>
       <div class="card-body">
-        <form th:action="@{/update}" th:object="${article}" method="post">
+        <form th:action="@{/update}" th:object="${contact}" method="post">
 
           <input type="hidden" th:field="*{id}">
 
           <div class="form-group">
-            <label>Description :</label>
-            <input class="form-control" type="text" th:field="*{description}">
-            <span th:errors="*{description}" class="text-danger"></span>
+            <label>Nom :</label>
+            <input class="form-control" type="text" th:field="*{lastName}">
+            <span th:errors="*{lastName}" class="text-danger"></span>
           </div>
 
           <div class="form-group">
-            <label>Prix :</label>
-            <input class="form-control" type="text" th:field="*{price}">
-            <span th:errors="*{price}" class="text-danger"></span>
+            <label>Prénom :</label>
+            <input class="form-control" type="text" th:field="*{firstName}">
+            <span th:errors="*{firstName}" class="text-danger"></span>
           </div>
 
           <div class="form-group">
-            <label>Catégorie :</label>
-            <select class="form-control" th:field="*{category}">
-              <option value="">-- Choisir --</option>
-              <option th:each="c : ${categories}"
-                      th:value="${c.id}"
-                      th:text="${c.name}">
-              </option>
-            </select>
+            <label>Mail :</label>
+            <input class="form-control" type="text" th:field="*{mail}">
+            <span th:errors="*{mail}" class="text-danger"></span>
+          </div>
+
+          <div class="form-group">
+            <label>Téléphone :</label>
+            <input class="form-control" type="text" th:field="*{phone}">
+            <span th:errors="*{phone}" class="text-danger"></span>
+          </div>
+
+          <div class="form-group">
+            <label>Adresse :</label>
+            <input class="form-control" type="text" th:field="*{address}">
+            <span th:errors="*{address}" class="text-danger"></span>
           </div>
 
           <button type="submit" class="btn btn-primary">Enregistrer</button>
