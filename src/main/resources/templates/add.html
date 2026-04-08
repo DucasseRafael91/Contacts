@@ -13,7 +13,7 @@
     <div class="card card-primary">
       <div class="card-header">Ajouter un contact</div>
       <div class="card-body">
-        <form th:action="@{/save}" th:object="${user}" method="post">
+        <form th:action="@{/save}" th:object="${contact}" method="post">
           <div class="form-group">
             <label class="control-label">Nom :</label>
             <input class="form-control" type="text" th:field="*{lastName}">

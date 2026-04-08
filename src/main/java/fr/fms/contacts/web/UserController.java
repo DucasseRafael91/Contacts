@@ -8,7 +8,7 @@ public class UserController {
 
   @GetMapping("/login")
   public String login() {
-    return "login"; // renvoie login.html
+    return "login";
   }
 
 }
