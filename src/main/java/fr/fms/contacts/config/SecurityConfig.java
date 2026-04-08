@@ -14,7 +14,8 @@ public class SecurityConfig {
   public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
     http
         .authorizeHttpRequests(auth -> auth
-            .requestMatchers("/login").permitAll()
+            .requestMatchers("/login", "/index").permitAll()
+            .requestMatchers("/css/**", "/js/**", "/images/**").permitAll()
             .anyRequest().authenticated()
         )
         .formLogin(form -> form
@@ -23,7 +24,7 @@ public class SecurityConfig {
         )
         .logout(logout -> logout
             .logoutUrl("/logout")
-            .logoutSuccessUrl("/login")
+            .logoutSuccessUrl("/index")
             .invalidateHttpSession(true)
             .deleteCookies("JSESSIONID")
             .permitAll()
