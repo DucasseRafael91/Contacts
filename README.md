@@ -31,7 +31,7 @@ Cette application permet aux utilisateurs d'ajouter leurs contacts, de les mettr
 
 
 ## Installation et exécution
-*(À compléter selon la technologie choisie)*
+
 
 1. Cloner le dépôt :
    ```bash
