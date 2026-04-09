@@ -1,13 +1,13 @@
 ## Dans un premier temps l'application permettra:
 
-### Pour tous les utilisateurs :
+### Pour les visiteurs :
 
 - d’afficher la page d’accueil du site avec pour exemple un ensemble de contacts fictifs.
 
 
 ## Dans un second temps l'application permettra en plus de faire:
 
-### Pour les utilisateurs non connectés :
+### Pour les visiteurs :
 
 - de se connecter
 
