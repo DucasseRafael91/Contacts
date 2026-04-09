@@ -62,6 +62,11 @@ public class ContactController {
     return "contacts";
   }
 
+  /*
+  Méthode pour supprimer un contact
+  @param id : id du contact à supprimer
+  @return le nom de la vue à afficher ("index")
+  */
   @GetMapping("/delete")
   public String delete(Long id){
 
