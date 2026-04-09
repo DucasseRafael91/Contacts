@@ -36,20 +36,27 @@ public class ContactController {
   @Autowired
   CategorieRepository categorieRepository;
 
+
+  /*
+  Affiche la page d'accueil
+  @param model le modèle utilisé pour transmettre des données à la vue
+  @param session la session HTTP courante de l'utilisateur
+  @return le nom de la vue à afficher ("contacts")
+   */
   @GetMapping("/index")
   public String index(Model model, HttpSession session) {
 
     Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 
-    if (auth == null || !auth.isAuthenticated() || auth.getName().equals("anonymousUser")) {
-      model.addAttribute("listContact", null); // ou liste vide
+    if (auth.getName().equals("anonymousUser")) {
+      model.addAttribute("listContact", null);
       return "contacts";
     }
 
-    String username = auth.getName();
-    User user = userRepository.findUserByMail(username).orElseThrow(() -> new RuntimeException("Utilisateur non trouvé"));
+    String mail = auth.getName();
+    User user = userRepository.findUserByMail(mail).orElseThrow(() -> new RuntimeException("Utilisateur non trouvé"));
 
-    session.setAttribute("loggedUser", username);
+    session.setAttribute("loggedUser", mail);
     model.addAttribute("listContact", contactRepository.findContactsByUser(user));
 
     return "contacts";
