@@ -83,22 +83,29 @@ public class ContactController {
   @GetMapping("/add")
   public String add(Model model) {
     model.addAttribute("contact" , new Contact());
+    model.addAttribute("categories",categorieRepository.findAll());
     return "add";
   }
 
+  /*
+  Méthode pour ajouter un contact
+  @param Contact : Objet contact à ajouter
+  @param bindingResult : Résultats des saisies
+  @return s'il a des erreurs bindingResult le nom de la vue à afficher ("add")
+  @return s'il a des erreurs bindingResult le nom de la vue à afficher ("index")
+  */
   @PostMapping("/save")
-  public String save(@Valid Contact contact,
-      BindingResult bindingResult,
-      @AuthenticationPrincipal UserDetails userDetails) {
+  public String save(Model model, @Valid Contact contact, BindingResult bindingResult) {
+
+    Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 
     if (bindingResult.hasErrors()) {
+      model.addAttribute("categories", categorieRepository.findAll());
       return "add";
     }
 
-    // récupérer l'utilisateur depuis Spring Security
-    String mail = userDetails.getUsername();
-
-    User user = userRepository.findUserByMail(mail).orElseThrow();
+    String mail = auth.getName();
+    User user = userRepository.findUserByMail(mail).orElseThrow(() -> new RuntimeException("Utilisateur non trouvé"));
     contact.setUser(user);
     contactRepository.save(contact);
 
@@ -108,9 +115,8 @@ public class ContactController {
   @GetMapping("/edit")
   public String edit(Long id, Model model){
     Contact contact = contactRepository.findContactById(id);
-    List<Categorie> categories = categorieRepository.findAll();
     model.addAttribute("contact", contact);
-    model.addAttribute("categories",categories);
+    model.addAttribute("categories",categorieRepository.findAll());
     return "edit";
   }
 
