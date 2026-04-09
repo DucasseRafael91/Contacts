@@ -75,6 +75,11 @@ public class ContactController {
     return "redirect:/index";
   }
 
+  /*
+  Méthode pour accéder à la page d'ajout de contact
+  @param model : le modèle utilisé pour transmettre des données à la vue
+  @return le nom de la vue à afficher ("add")
+  */
   @GetMapping("/add")
   public String add(Model model) {
     model.addAttribute("contact" , new Contact());
