@@ -126,15 +126,25 @@ public class ContactController {
     return "edit";
   }
 
+  /*
+  Méthode pour mettre à jour un contact
+  @param model : le modèle utilisé pour transmettre des données à la vue
+  @param Contact : Objet contact à mettre à jour
+  @param bindingResult : Résultats des saisies
+  @return s'il a des erreurs bindingResult le nom de la vue à afficher ("edit")
+  @return le nom de la vue à afficher ("index")
+  */
   @PostMapping("/update")
-  public String update(Model model, @Valid Contact contact, BindingResult bindingResult, @AuthenticationPrincipal UserDetails userDetails) {
+  public String update(Model model, @Valid Contact contact, BindingResult bindingResult) {
+
+    Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 
     if (bindingResult.hasErrors()) {
       model.addAttribute("categories", categorieRepository.findAll());
       return "edit";
     }
 
-    String mail = userDetails.getUsername();
+    String mail = auth.getName();
     User user = userRepository.findUserByMail(mail).orElseThrow();
     contact.setUser(user);
     contactRepository.save(contact);
