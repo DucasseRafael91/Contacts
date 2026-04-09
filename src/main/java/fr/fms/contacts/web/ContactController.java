@@ -92,7 +92,7 @@ public class ContactController {
   @param Contact : Objet contact à ajouter
   @param bindingResult : Résultats des saisies
   @return s'il a des erreurs bindingResult le nom de la vue à afficher ("add")
-  @return s'il a des erreurs bindingResult le nom de la vue à afficher ("index")
+  @return le nom de la vue à afficher ("index")
   */
   @PostMapping("/save")
   public String save(Model model, @Valid Contact contact, BindingResult bindingResult) {
@@ -112,6 +112,12 @@ public class ContactController {
     return "redirect:/index";
   }
 
+  /*
+  Méthode pour afficher la page de mise à jour d'un contact
+  @param id : Id de l'objet à mettre à jour
+  @param model : le modèle utilisé pour transmettre des données à la vue
+  @return le nom de la vue à afficher ("edit")
+  */
   @GetMapping("/edit")
   public String edit(Long id, Model model){
     Contact contact = contactRepository.findContactById(id);
